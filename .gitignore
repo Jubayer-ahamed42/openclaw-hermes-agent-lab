@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment secrets
+.env
+.env.local
+*.env
+
+# OpenClaw Isolated State & Cache
+.openclaw/
+*.log
+*.tmp
+*.part
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# Workspace system files (allow specs, keep output clean)
+workspace/*
+!workspace/.gitkeep
+!workspace/AGENTS.md
+!workspace/SOUL.md

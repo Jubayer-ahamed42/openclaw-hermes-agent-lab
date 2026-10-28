@@ -1,0 +1,23 @@
+{
+  "name": "openclaw-hermes-lab",
+  "version": "1.0.0",
+  "description": "Isolated OpenClaw gateway integrated with Nous Hermes agentic brain",
+  "main": "test_hermes_openclaw.js",
+  "type": "module",
+  "scripts": {
+    "openclaw": "node ./node_modules/cross-env/src/bin/cross-env.js OPENCLAW_HOME=./.openclaw OPENCLAW_CONFIG_PATH=./config/openclaw.json5 OPENCLAW_STATE_DIR=./.openclaw/state node ./node_modules/openclaw/openclaw.mjs",
+    "chat": "npm run openclaw -- chat",
+    "gateway": "npm run openclaw -- gateway start",
+    "gateway:status": "npm run openclaw -- gateway status",
+    "doctor": "npm run openclaw -- doctor",
+    "test:hermes": "node test_hermes_openclaw.js",
+    "test:glm5": "node test_glm5_openclaw.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "openclaw": "^2026.9.6"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  // ===========================================================================
+  // OpenClaw Gateway & Nous Hermes Brain Configuration
+  // Strict Isolation: Confined to C:\MY PROJECT\2. OPEN CLAW AND HERMES SETUP
+  // ===========================================================================
+
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "token": "openclaw-local-token"
+    }
+  },
+
+  "memory": {
+    "search": {
+      "enabled": false
+    }
+  },
+
+  "agents": {
+    "defaults": {
+      "workspace": "/root/.openclaw/workspace",
+      "model": {
+        "primary": "omniroute/auto"
+      }
+    }
+  },
+
+  "models": {
+    "providers": {
+      // OmniRoute Local AI Gateway (Default Universal Brain)
+      "omniroute": {
+        "baseUrl": "http://127.0.0.1:20128/v1",
+        "apiKey": "${OMNIROUTE_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "auto",
+            "name": "OmniRoute Universal Auto Router"
+          },
+          {
+            "id": "gemini-2.5-flash",
+            "name": "Google Gemini 2.5 Flash"
+          },
+          {
+            "id": "gemini-2.5-pro",
+            "name": "Google Gemini 2.5 Pro"
+          }
+        ]
+      }
+    }
+  },
+
+  "tools": {
+    // Terminal execution capability (Python, PowerShell, Bash)
+    "exec": {
+      "host": "gateway",
+      "mode": "full"
+    }
+  },
+
+  "channels": {
+    // Telegram Bot Gateway
+    "telegram": {
+      "enabled": true,
+      "botToken": "8670054327:AAFlokGCxQwZ_L3Jty1ftWKti8qQQ2vHutA",
+      "dmPolicy": "open",
+      "allowFrom": ["*"]
+    }
+  }
+}
