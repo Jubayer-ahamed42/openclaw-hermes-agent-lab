@@ -1,7 +1,7 @@
 {
   // ===========================================================================
   // OpenClaw Gateway & Nous Hermes Brain Configuration
-  // Strict Isolation: Confined to C:\MY PROJECT\2. OPEN CLAW AND HERMES SETUP
+  // Strict Isolation: Confined to local project environment
   // ===========================================================================
 
   "gateway": {
@@ -63,7 +63,7 @@
     // Telegram Bot Gateway
     "telegram": {
       "enabled": true,
-      "botToken": "8670054327:AAFlokGCxQwZ_L3Jty1ftWKti8qQQ2vHutA",
+      "botToken": "${TELEGRAM_BOT_TOKEN}",
       "dmPolicy": "open",
       "allowFrom": ["*"]
     }
