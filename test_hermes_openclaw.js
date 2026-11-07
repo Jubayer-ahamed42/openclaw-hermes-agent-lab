@@ -22,36 +22,36 @@ process.env.OPENCLAW_CONFIG_PATH = configPath;
 process.env.OPENCLAW_STATE_DIR = stateDir;
 
 console.log('\n================================================================');
-console.log('       OPENCLAW + NOUS HERMES AUTOMATED VERIFICATION SUITE       ');
+console.log(' OPENCLAW + NOUS HERMES AUTOMATED VERIFICATION SUITE ');
 console.log('================================================================\n');
 
 async function run() {
-  console.log('📂 Target Directory: ' + rootDir);
-  console.log('🔒 Isolation Root:   ' + openclawHome);
-  console.log('⚙️  Config File:      ' + configPath);
-  console.log('🧪 Workspace:        ' + workspaceDir);
+  console.log('[Dir] Target Directory: ' + rootDir);
+  console.log('[Secure] Isolation Root: ' + openclawHome);
+  console.log(' Config File: ' + configPath);
+  console.log('[Test] Workspace: ' + workspaceDir);
   console.log('');
 
   // 1. Verify Prerequisites
   console.log('--- Step 1: Checking System Environment ---');
   try {
     const nodeVer = process.version;
-    console.log(`  ✔ Node.js: ${nodeVer}`);
+    console.log(` [OK] Node.js: ${nodeVer}`);
   } catch (e) {
-    console.error(`  ❌ Node.js check failed: ${e.message}`);
+    console.error(` [X] Node.js check failed: ${e.message}`);
   }
 
   try {
     const pyVer = execSync('python --version', { encoding: 'utf-8' }).trim();
-    console.log(`  ✔ Python:  ${pyVer}`);
+    console.log(` [OK] Python: ${pyVer}`);
   } catch (e) {
-    console.warn(`  ⚠️ Python check warning: Ensure python is in PATH (${e.message})`);
+    console.warn(` [!] Python check warning: Ensure python is in PATH (${e.message})`);
   }
 
   if (fs.existsSync(configPath)) {
-    console.log('  ✔ OpenClaw configuration file exists.');
+    console.log(' [OK] OpenClaw configuration file exists.');
   } else {
-    console.error(`  ❌ Config file missing at: ${configPath}`);
+    console.error(` [X] Config file missing at: ${configPath}`);
     process.exit(1);
   }
 
@@ -65,17 +65,17 @@ async function run() {
   const isKeyConfigured = apiKey && apiKey.trim().length > 10 && !apiKey.includes('your-openrouter-key');
 
   if (!isKeyConfigured) {
-    console.log('  ⚠️  OPENROUTER_API_KEY is not configured or is using placeholder text.');
-    console.log('  👉  To execute live benchmark turns against Nous Hermes:');
-    console.log('      1. Open .env in this folder.');
-    console.log('      2. Set OPENROUTER_API_KEY=sk-or-v1-xxxxxx');
-    console.log('      3. Re-run: npm run test:hermes (or run_lab.bat option 3)');
-    console.log('\n  ✔ Environment isolation, configurations, and tools scaffold verified successfully (Dry Run Mode).');
+    console.log(' [!] OPENROUTER_API_KEY is not configured or is using placeholder text.');
+    console.log(' -> To execute live benchmark turns against Nous Hermes:');
+    console.log(' 1. Open .env in this folder.');
+    console.log(' 2. Set OPENROUTER_API_KEY=sk-or-v1-xxxxxx');
+    console.log(' 3. Re-run: npm run test:hermes (or run_lab.bat option 3)');
+    console.log('\n [OK] Environment isolation, configurations, and tools scaffold verified successfully (Dry Run Mode).');
     process.exit(0);
   }
 
-  console.log('  ✔ OpenRouter API Key detected.');
-  console.log(`  ✔ Target Primary Model: ${process.env.HERMES_PRIMARY_MODEL || 'nousresearch/hermes-3-llama-3.1-405b'}`);
+  console.log(' [OK] OpenRouter API Key detected.');
+  console.log(` [OK] Target Primary Model: ${process.env.HERMES_PRIMARY_MODEL || 'nousresearch/hermes-3-llama-3.1-405b'}`);
 
   // 3. Execution of Hermes Agent Turn
   console.log('\n--- Step 3: Executing Live Benchmark (OpenClaw -> Hermes) ---');
@@ -93,7 +93,7 @@ async function run() {
     "4. Report the script execution output."
   ].join(' ');
 
-  console.log(`  🤖 Dispatching prompt to Nous Hermes...`);
+  console.log(` [AI] Dispatching prompt to Nous Hermes...`);
   const startTime = Date.now();
 
   try {
@@ -106,7 +106,7 @@ async function run() {
     });
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(2);
-    console.log(`\n  ✔ Agent response received in ${elapsed}s:`);
+    console.log(`\n [OK] Agent response received in ${elapsed}s:`);
     console.log('----------------------------------------------------------------');
     console.log(result.trim());
     console.log('----------------------------------------------------------------');
@@ -114,27 +114,27 @@ async function run() {
     // 4. Verify Generated File and Result
     console.log('\n--- Step 4: Verifying Output Artifacts ---');
     if (fs.existsSync(testScriptPath)) {
-      console.log(`  ✔ Target file 'workspace/hello_hermes.py' was successfully created!`);
+      console.log(` [OK] Target file 'workspace/hello_hermes.py' was successfully created!`);
       const fileContent = fs.readFileSync(testScriptPath, 'utf-8');
-      console.log('  📄 File contents:');
-      console.log(fileContent.split('\n').map(l => '     ' + l).join('\n'));
+      console.log(' [Doc] File contents:');
+      console.log(fileContent.split('\n').map(l => ' ' + l).join('\n'));
 
       // Run independent execution check
       const pyOutput = execSync(`python "${testScriptPath}"`, { encoding: 'utf-8' }).trim();
-      console.log(`  ✔ Direct execution test output:\n     ${pyOutput}`);
+      console.log(` [OK] Direct execution test output:\n ${pyOutput}`);
     } else {
-      console.warn(`  ⚠️ Note: 'workspace/hello_hermes.py' was not written directly to disk. Check agent output above.`);
+      console.warn(` [!] Note: 'workspace/hello_hermes.py' was not written directly to disk. Check agent output above.`);
     }
 
     console.log('\n================================================================');
-    console.log('   🎉 BENCHMARK COMPLETE: OPENCLAW + NOUS HERMES OPERATIONAL!   ');
+    console.log(' BENCHMARK COMPLETE: OPENCLAW + NOUS HERMES OPERATIONAL! ');
     console.log('================================================================\n');
 
   } catch (err) {
-    console.error('\n  ❌ Error during agent execution:');
-    if (err.stdout) console.error('  STDOUT:\n' + err.stdout);
-    if (err.stderr) console.error('  STDERR:\n' + err.stderr);
-    console.error('  Error Details: ' + err.message);
+    console.error('\n [X] Error during agent execution:');
+    if (err.stdout) console.error(' STDOUT:\n' + err.stdout);
+    if (err.stderr) console.error(' STDERR:\n' + err.stderr);
+    console.error(' Error Details: ' + err.message);
     process.exit(1);
   }
 }

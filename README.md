@@ -1,4 +1,4 @@
-# 🔬 OpenClaw + Nous Hermes Autonomous Agent Lab
+# OpenClaw + Nous Hermes Autonomous Agent Lab
 
 <p align="center">
   <a href="https://github.com/Jubayer-ahamed42/openclaw-hermes-agent-lab"><img src="https://img.shields.io/badge/GitHub-openclaw--hermes--agent--lab-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repo" /></a>
@@ -11,22 +11,22 @@ A completely isolated, production-grade local installation of **OpenClaw** integ
 
 ---
 
-## 🏗️ Architecture & Isolation Boundary
+## Architecture & Isolation Boundary
 
 All dependencies, configurations, logs, state files, and agent workspaces are strictly confined to this folder (`openclaw-hermes-agent-lab`).
 
 ```
 openclaw-hermes-agent-lab\
-├── .env                       # Local environment credentials (OPENROUTER_API_KEY, etc.)
-├── .env.example               # Clean reference template for environment setup
-├── .gitignore                 # Excludes node_modules, keys, state, and runtime logs
-├── package.json               # Local npm scripts and dependencies
+├── .env # Local environment credentials (OPENROUTER_API_KEY, etc.)
+├── .env.example # Clean reference template for environment setup
+├── .gitignore # Excludes node_modules, keys, state, and runtime logs
+├── package.json # Local npm scripts and dependencies
 ├── config\
-│   └── openclaw.json5         # Gateway & Nous Hermes configuration
-├── workspace\                 # Isolated sandbox for agent file and script execution
-├── test_hermes_openclaw.js    # Automated verification and benchmark suite
-├── run_lab.bat                # Windows interactive 1-click launcher
-└── README.md                  # Complete documentation and user guide
+│ └── openclaw.json5 # Gateway & Nous Hermes configuration
+├── workspace\ # Isolated sandbox for agent file and script execution
+├── test_hermes_openclaw.js # Automated verification and benchmark suite
+├── run_lab.bat # Windows interactive 1-click launcher
+└── README.md # Complete documentation and user guide
 ```
 
 ### Strict Isolation Guarantees:
@@ -37,7 +37,7 @@ openclaw-hermes-agent-lab\
 
 ---
 
-## ⚡ Quick Start Guide
+## Quick Start Guide
 
 ### 1. Configure Your API Key
 Open `.env` (or copy `.env.example` to `.env`) and add your OpenRouter API key:
@@ -64,7 +64,7 @@ This launches an interactive menu:
 
 ---
 
-## 🧠 Brain Configuration: Nous Hermes
+## Brain Configuration: Nous Hermes
 
 OpenClaw connects to Nous Hermes using OpenRouter (or any OpenAI-compatible API).
 
@@ -89,7 +89,7 @@ If you run Hermes locally via LM Studio, vLLM, or an OpenAI-compatible gateway:
 
 ---
 
-## 🛠️ Execution Capabilities & Tools (The Body)
+## Execution Capabilities & Tools (The Body)
 
 The agent is empowered with full autonomous capabilities:
 
@@ -102,7 +102,7 @@ The agent is empowered with full autonomous capabilities:
 
 ---
 
-## 💬 Messaging Gateway (CLI & Telegram)
+## Messaging Gateway (CLI & Telegram)
 
 ### Interactive CLI Mode
 Run in PowerShell or CMD:
@@ -125,7 +125,7 @@ npm run chat
 
 ---
 
-## 🧪 Verification & Live Benchmark Test
+## Verification & Live Benchmark Test
 
 Run the automated test suite:
 ```powershell
@@ -143,7 +143,7 @@ npm run test:hermes
 
 ---
 
-## 📋 Available NPM Commands
+## Available NPM Commands
 
 | Command | Action |
 | :--- | :--- |
