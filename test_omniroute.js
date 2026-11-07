@@ -29,7 +29,7 @@ const req = http.request(options, (res) => {
         const json = JSON.parse(data);
         console.log(`[OK] Available Models Catalog:`, json.data ? json.data.length + ' models' : 'Catalog initialized');
       } catch (e) {
-        console.log('ℹ️ Gateway Response:', data.slice(0, 150));
+        console.log('[INFO] Gateway Response:', data.slice(0, 150));
       }
     } else {
       console.log(`[!] Unexpected status code: ${res.statusCode}`);
